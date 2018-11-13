@@ -14,7 +14,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-//Sourced from Youtube Tutorial;
+//Reset password activity referenced
+// and sourced from Youtube Tutorial;
 //      https://www.youtube.com/watch?v=UJk5KwpvKyM
 
 public class ResetPasswordActivity extends AppCompatActivity {
@@ -36,18 +37,18 @@ public class ResetPasswordActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         //Calling firebase authentication instance
         auth = FirebaseAuth.getInstance();
-
+        //overrides onclick listener to go back
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
+        //overrides the onclick listener to reset the password
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //retrieves value in the email field
                 String email = inputEmail.getText().toString().trim();
                 //If no email is entered into the field, users are prompted to enter a registered email id
                 if (TextUtils.isEmpty(email)) {
@@ -55,17 +56,18 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     return;
                 }
                 //sending reset password email to the registered email address given
+                //shows progress bar
                 progressBar.setVisibility(View.VISIBLE);
                 auth.sendPasswordResetEmail(email)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
+                                if (task.isSuccessful()) { //reset email is sent to the user
                                     Toast.makeText(ResetPasswordActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
-                                } else {
+                                } else { //error occured, email may be invalid
                                     Toast.makeText(ResetPasswordActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
                                 }
-
+                                //hides progress bar
                                 progressBar.setVisibility(View.GONE);
                             }
                         });

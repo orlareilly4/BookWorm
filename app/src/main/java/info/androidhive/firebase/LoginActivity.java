@@ -17,8 +17,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-//Sourced from Youtube Tutorial;
-  //      https://www.youtube.com/watch?v=UJk5KwpvKyM
+//Login activity referenced and
+// Sourced from Youtube Tutorial;
+//      https://www.youtube.com/watch?v=UJk5KwpvKyM
 public class LoginActivity extends AppCompatActivity {
       //Declarations
     private EditText inputEmail, inputPassword;
@@ -32,18 +33,16 @@ public class LoginActivity extends AppCompatActivity {
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
-
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
 
-        // set the view now
+        // set the view now to the login activity
         setContentView(R.layout.activity_login);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        //Declarations
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -53,14 +52,14 @@ public class LoginActivity extends AppCompatActivity {
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
-
+        //Overriding the onclick listener to signup activity
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, SignupActivity.class));
             }
         });
-
+        //Overriding the onclick listener to the resetpassword activity
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,10 +82,9 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                //Displays the progress bar
                 progressBar.setVisibility(View.VISIBLE);
-
-                //authenticate user
+                //authenticate user against firebase database
                 auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -95,14 +93,15 @@ public class LoginActivity extends AppCompatActivity {
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 progressBar.setVisibility(View.GONE);
+                                //Login isn't successful, displays error
                                 if (!task.isSuccessful()) {
-                                    // there was an error
+                                    // if password is less than 6 characters, prompt user to enter their longer password
                                     if (password.length() < 6) {
                                         inputPassword.setError(getString(R.string.minimum_password));
-                                    } else {
+                                    } else { //User isn't register, and is prompted to register so they can login
                                         Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
-                                } else {
+                                } else { //Login successful, brings user to the landing page
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();
