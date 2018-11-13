@@ -33,4 +33,5 @@
     <string name="title_dashboard">Profile</string>
     <string name="title_notifications">Wishlist</string>
     <string name="personal_library">My Library</string>
+    <string name="add_now">Add a new book your library now!</string>
 </resources>
