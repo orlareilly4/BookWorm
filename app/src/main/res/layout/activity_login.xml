@@ -84,9 +84,8 @@
             android:background="@null"
             android:text="@string/btn_link_to_register"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary"
-            android:textSize="15dp"
-            tools:text="Not registered? Sign up now!" />
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp" />
     </LinearLayout>
 
     <ProgressBar

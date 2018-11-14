@@ -126,6 +126,12 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/btnLib"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Library" />
+
+        <Button
             android:id="@+id/change_email_button"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
