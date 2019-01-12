@@ -35,4 +35,14 @@
     <string name="personal_library">My Library</string>
     <string name="add_now">Add a new book your library now!</string>
     <string name="welcome">Welcome to your BookWorm profile!</string>
+
+    <array name ='genres'>
+
+        <item>Fiction</item>
+        <item>Autobiography</item>
+        <item>Thriller</item>
+        <item>Fantasy</item>
+        <item>Romantic</item>
+        <item>Science</item>
+    </array>
 </resources>

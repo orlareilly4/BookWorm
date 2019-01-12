@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="info.androidhive.firebase">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="info.androidhive.firebase"
+    tools:ignore="NamespaceTypo">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,11 +12,16 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory="BookWorm">
+
+
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -37,6 +44,6 @@
             android:label="@string/title_activity_reset_password"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LibraryActivity" />
-    </application>
+    </application >
 
 </manifest>
